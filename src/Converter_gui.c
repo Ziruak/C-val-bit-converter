@@ -341,7 +341,7 @@ void converter_exit(GtkWidget *window, gpointer *data) {
 int main(int argc, char *argv[]) {
     GtkWidget *window, *vbox;
     GtkWidget *label_value, *label_memory, *label_out, *label_help;
-    GtkWidget *vbox_rbtns, *hbox, *vbox_othr, *hbox_modes;
+    GtkWidget *vbox_rbtns, *hbox, *vbox_othr, *hbox_modes, *hbox_btns;
     GtkWidget *rb_char, *rb_int, *rb_uint, *rb_long, *rb_ulong, *rb_float, *rb_double;
     GtkWidget *rb_mode_val_to_mem, *rb_mode_mem_to_val, *rb_mode_test;
     GtkWidget *entry_value, *entry_memory, *entry_out;
@@ -381,42 +381,16 @@ int main(int argc, char *argv[]) {
     hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, TRUE, 0);
 
-    vbox_rbtns = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_box_pack_start(GTK_BOX(hbox), vbox_rbtns, TRUE, TRUE, 0);
-
-
-    rb_char = gtk_radio_button_new_with_label(NULL,"char");
-    rb_int = gtk_radio_button_new_with_label(NULL,"int");
-    rb_uint = gtk_radio_button_new_with_label(NULL,"unsigned int");
-    rb_long = gtk_radio_button_new_with_label(NULL,"long");
-    rb_ulong = gtk_radio_button_new_with_label(NULL,"unsigned long");
-    rb_float = gtk_radio_button_new_with_label(NULL,"float");
-    rb_double = gtk_radio_button_new_with_label(NULL,"double");
-
-    gtk_radio_button_join_group(GTK_RADIO_BUTTON(rb_int),GTK_RADIO_BUTTON(rb_char));
-    gtk_radio_button_join_group(GTK_RADIO_BUTTON(rb_uint),GTK_RADIO_BUTTON(rb_char));
-    gtk_radio_button_join_group(GTK_RADIO_BUTTON(rb_long),GTK_RADIO_BUTTON(rb_char));
-    gtk_radio_button_join_group(GTK_RADIO_BUTTON(rb_ulong),GTK_RADIO_BUTTON(rb_char));
-    gtk_radio_button_join_group(GTK_RADIO_BUTTON(rb_float),GTK_RADIO_BUTTON(rb_char));
-    gtk_radio_button_join_group(GTK_RADIO_BUTTON(rb_double),GTK_RADIO_BUTTON(rb_char));
-   
-    gtk_box_pack_start(GTK_BOX(vbox_rbtns), rb_char, TRUE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox_rbtns), rb_int, TRUE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox_rbtns), rb_uint, TRUE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox_rbtns), rb_long, TRUE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox_rbtns), rb_ulong, TRUE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox_rbtns), rb_float, TRUE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox_rbtns), rb_double, TRUE, TRUE, 0);
 
     vbox_othr = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
     gtk_box_pack_start(GTK_BOX(hbox), vbox_othr, TRUE, TRUE, 0);
 
 
-    btn_convert = gtk_button_new_with_label("Перевести");
-    gtk_box_pack_start(GTK_BOX(vbox_othr), btn_convert, FALSE, TRUE, 5);
+    //btn_convert = gtk_button_new_with_label("Перевести");
+    //gtk_box_pack_start(GTK_BOX(vbox_othr), btn_convert, FALSE, TRUE, 5);
 
-    btn_generate_val = gtk_button_new_with_label("Сгенерировать значение");
-    gtk_box_pack_start(GTK_BOX(vbox_othr), btn_generate_val, FALSE, TRUE, 5);
+    //btn_generate_val = gtk_button_new_with_label("Сгенерировать значение");
+    //gtk_box_pack_start(GTK_BOX(vbox_othr), btn_generate_val, FALSE, TRUE, 5);
 
     hbox_modes = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(vbox_othr), hbox_modes, FALSE, TRUE, 5);
@@ -448,6 +422,42 @@ int main(int argc, char *argv[]) {
     "[2]: Введите предролагаемое представление в памяти.\n"
     "[3]: Нажмите кнопку \"Перевести\", чтобы увидеть правильность предположения.");
     gtk_box_pack_start(GTK_BOX(vbox_othr), label_help, TRUE, TRUE, 0);
+
+    vbox_rbtns = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_box_pack_start(GTK_BOX(hbox), vbox_rbtns, TRUE, TRUE, 0);
+
+    hbox_btns = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start(GTK_BOX(vbox_rbtns), hbox_btns, TRUE, TRUE, 0);
+
+    btn_convert = gtk_button_new_with_label("Перевести");
+    gtk_box_pack_start(GTK_BOX(hbox_btns), btn_convert, FALSE, TRUE, 5);
+
+    btn_generate_val = gtk_button_new_with_label("Сгенерировать значение");
+    gtk_box_pack_start(GTK_BOX(hbox_btns), btn_generate_val, FALSE, TRUE, 5);
+
+
+    rb_char = gtk_radio_button_new_with_label(NULL,"char");
+    rb_int = gtk_radio_button_new_with_label(NULL,"int");
+    rb_uint = gtk_radio_button_new_with_label(NULL,"unsigned int");
+    rb_long = gtk_radio_button_new_with_label(NULL,"long");
+    rb_ulong = gtk_radio_button_new_with_label(NULL,"unsigned long");
+    rb_float = gtk_radio_button_new_with_label(NULL,"float");
+    rb_double = gtk_radio_button_new_with_label(NULL,"double");
+
+    gtk_radio_button_join_group(GTK_RADIO_BUTTON(rb_int),GTK_RADIO_BUTTON(rb_char));
+    gtk_radio_button_join_group(GTK_RADIO_BUTTON(rb_uint),GTK_RADIO_BUTTON(rb_char));
+    gtk_radio_button_join_group(GTK_RADIO_BUTTON(rb_long),GTK_RADIO_BUTTON(rb_char));
+    gtk_radio_button_join_group(GTK_RADIO_BUTTON(rb_ulong),GTK_RADIO_BUTTON(rb_char));
+    gtk_radio_button_join_group(GTK_RADIO_BUTTON(rb_float),GTK_RADIO_BUTTON(rb_char));
+    gtk_radio_button_join_group(GTK_RADIO_BUTTON(rb_double),GTK_RADIO_BUTTON(rb_char));
+   
+    gtk_box_pack_start(GTK_BOX(vbox_rbtns), rb_char, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox_rbtns), rb_int, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox_rbtns), rb_uint, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox_rbtns), rb_long, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox_rbtns), rb_ulong, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox_rbtns), rb_float, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox_rbtns), rb_double, TRUE, TRUE, 0);
 
     udata->rbs[0] = GTK_RADIO_BUTTON(rb_char) ; 
     udata->rbs[1] = GTK_RADIO_BUTTON(rb_int) ;
